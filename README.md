@@ -58,15 +58,15 @@ Accéder à l'application sur http://127.0.0.1:8000
 
 ### 🔐 Page de connexion
 
-![Login](docs/screenshots/login.png)
+![Login](login.png)
 
 ### 📊 Tableau de bord étudiant
 
-![Dashboard](docs/screenshots/dashboard.png)
+![Dashboard](dashboard.png)
 
 ### 🧑‍🎓 Liste des étudiants
 
-![Liste étudiants](docs/screenshots/liste_etudiants.png)
+![Liste étudiants](liste_etudiants.png)
 
 ---
 
