@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Tableau de bord Admin{% endblock %}
+
+{% block content %}
+    <!-- Stats Cards -->
+	<div class="stats-grid">
+		<div class="stat-card">
+			<div class="stat-header">
+				<div class="stat-title">Total Utilisateurs</div>
+				<div class="stat-icon" style="background-color: #2563eb;">
+					<i class="fas fa-users"></i>
+				</div>
+			</div>
+			<div class="stat-value">1,485</div>
+			<div class="stat-desc">+12% depuis le mois dernier</div>
+			<div class="stat-progress">
+				<div class="progress-bar">
+					<div class="progress-value" style="width: 75%; background-color: #2563eb;"></div>
+				</div>
+				<div class="progress-text">75%</div>
+			</div>
+		</div>
+
+		<div class="stat-card">
+			<div class="stat-header">
+				<div class="stat-title">Documents</div>
+				<div class="stat-icon" style="background-color: #8b5cf6;">
+					<i class="fas fa-file"></i>
+				</div>
+			</div>
+			<div class="stat-value">854</div>
+			<div class="stat-desc">+7% depuis le mois dernier</div>
+			<div class="stat-progress">
+				<div class="progress-bar">
+					<div class="progress-value" style="width: 65%; background-color: #8b5cf6;"></div>
+				</div>
+				<div class="progress-text">65%</div>
+			</div>
+		</div>
+
+		<div class="stat-card">
+			<div class="stat-header">
+				<div class="stat-title">Tâches complétées</div>
+				<div class="stat-icon" style="background-color: #10b981;">
+					<i class="fas fa-check"></i>
+				</div>
+			</div>
+			<div class="stat-value">85%</div>
+			<div class="stat-desc">+5% depuis le mois dernier</div>
+			<div class="stat-progress">
+				<div class="progress-bar">
+					<div class="progress-value" style="width: 85%; background-color: #10b981;"></div>
+				</div>
+				<div class="progress-text">85%</div>
+			</div>
+		</div>
+
+		<div class="stat-card">
+			<div class="stat-header">
+				<div class="stat-title">Demandes en attente</div>
+				<div class="stat-icon" style="background-color: #f59e0b;">
+					<i class="fas fa-clock"></i>
+				</div>
+			</div>
+			<div class="stat-value">24</div>
+			<div class="stat-desc">-2% depuis le mois dernier</div>
+			<div class="stat-progress">
+				<div class="progress-bar">
+					<div class="progress-value" style="width: 30%; background-color: #f59e0b;"></div>
+				</div>
+				<div class="progress-text">30%</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

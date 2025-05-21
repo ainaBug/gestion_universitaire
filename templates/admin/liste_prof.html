@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Liste Des Etudiants{% endblock %}
+
+{% block content %}
+<div class="liste-etudiants">
+	<section class="search-container">
+		<div class="search-buttons">
+			<button class="btn btn-primary" onclick="showAddStudentModal()">Ajout Professeur</button>
+		</div>
+		<div class="search-form">
+			<div class="search-group">
+				<label for="search">Recherche rapide</label>
+				<input type="text" id="search" placeholder="Nom, prénom ou numéro étudiant">
+			</div>
+			
+			<div class="search-group">
+				<label for="classe">Classe</label>
+				<select id="classe">
+					<option value="">Toutes les classes</option>
+					<option value="classe1">Classe A</option>
+					<option value="classe2">Classe B</option>
+					<option value="classe3">Classe C</option>
+				</select>
+			</div>
+			
+			<div class="search-group">
+				<label for="annee">Année scolaire</label>
+				<select id="annee">
+					<option value="">Toutes les années</option>
+					<option value="2024-2025" selected>2024-2025</option>
+					<option value="2023-2024">2023-2024</option>
+					<option value="2022-2023">2022-2023</option>
+				</select>
+			</div>
+			
+			<div class="search-group">
+				<label for="niveau">Niveau</label>
+				<select id="niveau">
+					<option value="">Tous les niveaux</option>
+					<option value="licence1">Licence 1</option>
+					<option value="licence2">Licence 2</option>
+					<option value="licence3">Licence 3</option>
+					<option value="master1">Master 1</option>
+					<option value="master2">Master 2</option>
+					<option value="doctorat">Doctorat</option>
+				</select>
+			</div>
+		</div>
+		
+		<button class="advanced-search-toggle" onclick="toggleAdvancedSearch()">
+			<span id="advanced-toggle-text">Afficher les filtres avancés</span>
+			<span id="toggle-icon">▼</span>
+		</button>
+		
+		<div class="advanced-filters" id="advanced-filters">
+			<div class="search-group">
+				<label for="programme">Programme</label>
+				<select id="programme">
+					<option value="">Tous les programmes</option>
+					<option value="informatique">Informatique</option>
+					<option value="business">Business & Management</option>
+					<option value="sciences">Sciences</option>
+					<option value="arts">Arts & Lettres</option>
+					<option value="ingenierie">Ingénierie</option>
+					<option value="medecine">Médecine</option>
+					<option value="droit">Droit</option>
+				</select>
+			</div>
+			
+			<div class="search-group">
+				<label for="status">Statut</label>
+				<select id="status">
+					<option value="">Tous les statuts</option>
+					<option value="actif">Actif</option>
+					<option value="inactif">Inactif</option>
+				</select>
+			</div>
+			
+			<div class="search-group">
+				<label for="date-inscription">Date d'inscription</label>
+				<input type="date" id="date-inscription">
+			</div>
+			
+			<div class="search-group">
+				<label for="resultat">Résultat</label>
+				<select id="resultat">
+					<option value="">Tous les résultats</option>
+					<option value="admis">Admis</option>
+					<option value="ajourné">Ajourné</option>
+					<option value="rattrapage">Rattrapage</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="search-buttons">
+			<button class="btn btn-secondary" onclick="resetFilters()">Réinitialiser</button>
+			<button class="btn btn-primary" onclick="applyFilters()">Rechercher</button>
+		</div>
+	</section>
+	
+	<section class="students-table-container">
+		<div class="table-responsive">
+			<table>
+				<thead>
+					<tr>
+						<th>Nº Prof</th>
+						<th>Nom complet</th>
+						<th>Classe</th>
+						<th>Niveau</th>
+						<th>Programme</th>
+						<th>Année scolaire</th>
+						<th>Statut</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody id="students-table-body">
+					{% for etudiant in etudiants %}
+					<tr>
+						<td>{{ etudiant.numero_etudiant|default:"-" }}</td>
+						<td>{{ etudiant.prenom }} {{ etudiant.nom }}</td>
+						<td>{{ etudiant.classe }}</td>
+						<td>{{ etudiant.niveau_etude }}</td>
+						<td>{{ etudiant.programme }}</td>
+						<td>{{ etudiant.annee_scolaire }}</td>
+						<td>
+							<span class="status {% if etudiant.statut == 'actif' %}status-active{% else %}status-inactive{% endif %}">
+								{{ etudiant.statut|capfirst }}
+							</span>
+						</td>
+						<td>
+							<button class="action-btn action-btn-edit" data-id="{{ etudiant.id }}">Modifier</button>
+							<button class="action-btn action-btn-delete" data-id="{{ etudiant.id }}">Supprimer</button>
+						</td>
+					</tr>
+					{% empty %}
+					<tr>
+						<td colspan="8">Aucun étudiant trouvé.</td>
+					</tr>
+					{% endfor %}
+				</tbody>				
+			</table>
+		</div>
+
+		<div class="table-header">
+			<h2>Résultats <span id="result-count">(150)</span></h2>
+			<div class="pagination">
+				<span class="pagination-info">Page 1 sur 15</span>
+				<button class="page-btn">&lt;</button>
+				<button class="page-btn active">1</button>
+				<button class="page-btn">2</button>
+				<button class="page-btn">3</button>
+				<button class="page-btn">...</button>
+				<button class="page-btn">15</button>
+				<button class="page-btn">&gt;</button>
+			</div>
+		</div>
+		{% include "admin/partials/modal_formulaire.html" %}
+	</section>
+</div>
+{% endblock %}

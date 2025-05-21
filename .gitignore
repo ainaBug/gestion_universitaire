@@ -1,0 +1,19 @@
+# Environnement virtuel
+env/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# SQLite
+*.sqlite3
+
+# Django fichiers temporaires
+*.log
+
+# Static/media
+staticfiles/
+media/
+
+# VS Code settings
+.vscode/

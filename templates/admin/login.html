@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de connexion</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="card">
+		<div class="logo">
+			<img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+		</div>		
+        <div class="form-title">Système de Gestion Administrative Universitaire</div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Mot de passe" required>
+            </div>
+            <button type="submit" class="btn">Se connecter</button>
+        </form>
+
+        <div class="forgot">Mot de passe oublié ?</div>
+    </div>
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert">{{ message }}</div>
+		{% endfor %}
+	{% endif %}
+
+</body>
+</html>
